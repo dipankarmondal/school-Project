@@ -1,25 +1,50 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UserProvider, LoginDTO } from '../../providers/user/user';
+import { Storage } from '@ionic/storage';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [UserProvider]
 })
-export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+export class LoginPage {
+  loginDTO: LoginDTO;
+  loader: any;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage,
+    public userProvider: UserProvider, ) {
+
+    this.storage.get('token').then((value) => {
+      if (value) {
+        console.log('Token : ' + value);
+        this.navCtrl.setRoot("StudentCornerPage");
+      }
+    });
+
+    this.loginDTO = { UserName: "", Password: "" };
   }
 
-  login(){
-    this.navCtrl.push('StudentCornerPage');
+
+  createAccount() {
+    this.navCtrl.push('RegisterPage');
+  }
+
+  login() {
+
+    console.log("login clickd");
+    this.userProvider.login(this.loginDTO).then(data => {
+      console.log(data);
+      if (data) {
+        this.storage.set('token', JSON.stringify(data));
+        this.navCtrl.push('StudentCornerPage');
+      }
+    });
   }
 
   ionViewDidLoad() {

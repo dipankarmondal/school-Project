@@ -2,22 +2,27 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserProvider } from '../../providers/user/user';
-
 import { Chart } from 'chart.js';
 
+/**
+ * Generated class for the SubjectWisePerformancePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-student-corner',
-  templateUrl: 'student-corner.html',
+  selector: 'page-subject-wise-performance',
+  templateUrl: 'subject-wise-performance.html',
 })
-export class StudentCornerPage {
+export class SubjectWisePerformancePage {
+
+  aggregateList: any;
   user: any;
-  student: any;
-  todaysAttendance: any;
-  doughnutChart: any;
   p: number;
   a: number;
+  doughnutChart: any;
 
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
@@ -26,26 +31,25 @@ export class StudentCornerPage {
     public storage: Storage,
     public userProvider: UserProvider, ) {
 
-    this.loadStudentPrcnt();
+      this.loadAggregateList();
 
     this.storage.get('token').then((value) => {
       console.log('Token : ' + JSON.parse(value));
-      console.log('Name : ' + JSON.parse(value).Name);
       this.user = JSON.parse(value);
 
     })
-
   }
 
-  loadStudentPrcnt() {
+  loadAggregateList() {
     this.storage.get('token').then((value) => {
-      console.log('token2: ' + JSON.parse(value).AuthToken);
-
-      this.userProvider.stdntAttendChart(JSON.parse(value).AuthToken).then(data => {
+      console.log('token: ' + JSON.parse(value).AuthToken);
+      this.userProvider.getClassAggregateList(JSON.parse(value).AuthToken).then(data => {
         console.log('data: ' + data)
-        this.student = data;
-        this.p = this.student.PresentPercentage.toFixed(2);
-        this.a = this.student.AbsentPercentage.toFixed(2);
+        this.aggregateList = data;
+
+         /* this.p = this.aggregateList.Present;
+        this.a = this.aggregateList.Absent;
+        console.log('attend: ' + this.p);
 
         this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
 
@@ -58,6 +62,7 @@ export class StudentCornerPage {
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)'
               ],
+              
               hoverBackgroundColor: [
                 "#FF6384",
                 "#36A2EB", ,
@@ -65,30 +70,19 @@ export class StudentCornerPage {
             }]
           }
 
-        });
+        });  */
+
       });
     });
   }
 
-
-  loadTodaysAttendance() {
-    this.storage.get('token').then((value) => {
-      console.log('token: ' + JSON.parse(value).AuthToken);
-      this.userProvider.getTodaysAttendance(JSON.parse(value).AuthToken).then(data => {
-        console.log('data: ' + data)
-        this.todaysAttendance = data;
-      });
-    });
-  }
-
-
-  performanceList() {
-    this.navCtrl.push('SubjectWisePerformancePage')
+  showCalender(){
+    this.navCtrl.push('CalenderPage');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StudentCornerPage');
-
+    
+    console.log('ionViewDidLoad SubjectWisePerformancePage');
   }
 
 }

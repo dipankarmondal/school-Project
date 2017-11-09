@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the CalenderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CalendarController } from '../../components/ion2-calendar'
+
+import {
+  CalendarComponentOptions, CalendarModalOptions,
+  DayConfig
+} from '../../components/ion2-calendar/calendar.model';
+
+import * as moment from 'moment';
+import { CalendarModal } from "../../components/ion2-calendar";
 
 @IonicPage()
 @Component({
@@ -15,8 +18,46 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CalenderPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  days: Array<any> = [];
+  date: any = moment(moment().format('YYYY-MM-DD')).add(1, 'month');
+  dateMulti = [];
+  dateRangeObj = { from: moment().format('YYYY-MM-DD'), to: moment().add(3, 'd').format('YYYY-MM-DD') };
+  format = 'YYYY-MM-DD';
+
+  optionsRange: CalendarComponentOptions = {
+    from: new Date(2000, 0),
+    to: new Date(2020, 11, 31),
+    pickMode: 'range',
+    weekStart: 1,
+    weekdays: ['0', '1', '2', '3', '4', '5', '6'],
+  };
+
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public modalCtrl: ModalController,
+     public calendarCtrl: CalendarController,) {
   }
+
+  dateRange() {
+    const options: CalendarModalOptions = {
+      pickMode: 'range',
+      title: 'RANGE',
+      canBackwardsSelected: true,
+      color: 'danger'
+    };
+
+    let myCalendar = this.modalCtrl.create(CalendarModal, {
+      options: options
+    });
+
+    myCalendar.present();
+
+    myCalendar.onDidDismiss(date => {
+      console.log(date);
+    });
+  }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalenderPage');

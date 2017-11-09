@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
+  <div class="register-box">
 
+    <form>
+
+      <ion-row>
+        <ion-col>
+
+          <ion-item>
+            <ion-label floating>Enter Your First Name</ion-label>
+            <ion-input type="text" pattern="[a-zA-Z][a-zA-Z ]+" [(ngModel)]="firstName" #firstname="ngModel" name="firstname"></ion-input>
+          </ion-item>
+          <div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)" class="divAlert">
+            <div [hidden]=" !firstname.errors.required ">This field can't be empty</div>
+            <div [hidden]=" !firstname.errors.pattern ">Name should contain Alphabets</div>
+          </div>
+
+          
+
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+  </div>
 </ion-content>
