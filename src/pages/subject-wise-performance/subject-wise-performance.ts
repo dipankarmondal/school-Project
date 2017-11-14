@@ -56,6 +56,7 @@ export class SubjectWisePerformancePage {
           type: 'doughnut',
           data: {
             labels: ["Absent", "Present"],
+            
             datasets: [{
               data: [this.a, this.p],
               backgroundColor: [
@@ -76,8 +77,21 @@ export class SubjectWisePerformancePage {
     });
   }
 
-  showCalender(){
-    this.navCtrl.push('CalenderPage');
+  subDetails(event, item){
+    this.navCtrl.push('SubjectDetailsPage',{
+      item:item
+    });
+  }
+  absent(event, item){
+    this.navCtrl.push('AbsentPage',{
+      item:item
+    });
+  }
+
+  present(event, item){
+    this.navCtrl.push('PresentPage',{
+      item:item
+    });
   }
 
   ionViewDidLoad() {

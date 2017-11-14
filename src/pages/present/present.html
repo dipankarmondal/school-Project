@@ -1,0 +1,46 @@
+
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title style="text-align:center">Smart Roll Call</ion-title>
+    
+        <button ion-button clear small menuToggle="right" icon-only right>
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+    
+      </ion-navbar>
+      <div>
+        <p style="text-align:center">
+          <span style="font-weight:bold"> {{user?.Name}} </span>
+          <br>
+          <span style="float:left;">Subject Code: {{subject?.SubjectCode}}</span>
+          <span style="float:right">Roll No. {{user?.UserRole}}</span>
+          <br>
+          <span style="float:left; color: green">Present: {{subject?.Present}}</span>
+          <span style="color:green; float:right">Present %: {{subject?.PresentPercentage}}%</span>
+    
+        </p>
+      </div>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div ion-item style="height:10px">
+    <div style="width:80%; float:left; color:#488aff"> Date </div>
+    <div style="width:20%; float:left; color:#488aff"> Status </div>
+  </div>
+
+  <h3 *ngFor="let item of filteredData" ion-item style="background-color:rgb(187, 255, 187)">
+      <div style="width:80%; float: left"> {{item.AttendanceDate}} </div>
+      <div style="width:20%; float: right">
+        <span  style="color:green; font-weight: bold;"> {{item.Remarks}}</span>
+      </div>
+  
+    </h3>
+
+</ion-content>

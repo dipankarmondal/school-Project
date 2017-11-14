@@ -1,11 +1,21 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+      <div >
+          <ion-item style="height: 100px">
+            <ion-avatar class="avatar" item-start>
+              <img src="./assets/imgs/img_avatar2.png" style="width:60px; height: 60%" alt="no image">
+            </ion-avatar>
+            
+            <h6>Roll No. {{user?.CardNo}} :</h6>
+            <h6>User Type: <span *ngIf="user?.UserRole=='3'"> Student</span> </h6>
+          </ion-item>
+          <h6 style="text-align:center">{{user?.Name}}</h6>
+        </div>
+
   </ion-header>
 
   <ion-content>
+
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
@@ -14,20 +24,22 @@
   </ion-content>
   <ion-footer>
     <ion-toolbar>
-      <ion-title><button ion-button clear style="color:white" (click)=logOut()>Log Out</button></ion-title>
+      <ion-title>
+        <button ion-button clear style="color:white" (click)=logOut()>Log Out</button>
+      </ion-title>
     </ion-toolbar>
   </ion-footer>
 </ion-menu>
 
 <ion-menu [content]="content" side="right" id="notification">
-    <ion-content>
-      <ion-list>
-        <button ion-item  menuClose="notification" detail-none>
-          Close Menu 2
-        </button>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose="notification" detail-none>
+        Close Menu 2
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

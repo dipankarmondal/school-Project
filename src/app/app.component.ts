@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { CalenderPage } from '../pages/calender/calender';
+import { GetReportPage } from '../pages/get-report/get-report';
+import { Icon } from 'ionic-angular/components/icon/icon';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,8 +20,9 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any , icon: any}>;
 
+  user: any;
   constructor(public platform: Platform,
      public statusBar: StatusBar, 
      public splashScreen: SplashScreen,
@@ -27,10 +30,19 @@ export class MyApp {
      public storage: Storage,) {
     this.initializeApp();
 
+    this.storage.get('token').then((value) => {
+      console.log('Token : ' + JSON.parse(value));
+      console.log('Name : ' + JSON.parse(value).Name);
+      this.user = JSON.parse(value);
+
+    })
+
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
+      { title: 'Home', component: HomePage, icon:'home' },
+      { title: 'List', component: ListPage, icon:'home'  },
+      { title: 'Calender', component: CalenderPage, icon:'home' },
+      { title: 'Get Report', component: GetReportPage, icon:'home'}
     ];
 
   }

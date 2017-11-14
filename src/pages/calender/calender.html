@@ -7,26 +7,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>calender</ion-title>
-  </ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align:center">Smart Roll Call</ion-title>
+   
+      <button ion-button clear small menuToggle="right" icon-only right>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    
+    </ion-navbar>
+  <div style="height:25px">
+    <p style="text-align:center">subject wise Routine</p>
+  </div>
 
 </ion-header>
 <!--https://thielcole.github.io/ionic2/2017/02/03/Ionic2-Calendar.html -->
 
-<ion-content padding>
-
-<!--   <ion-card>
-    <ion-card-content>
-      <ion-card-title>
-        range
-      </ion-card-title>
-      <ion-calendar [(ngModel)]="dateRangeObj"
-                    [options]="optionsRange"
-                    [readonly]="true"
-                    [format]="format">
-      </ion-calendar>
-      <p>{{dateRangeObj | json}}</p>
-    </ion-card-content>
-  </ion-card> -->
-
+<ion-content>
+  <ion-calendar class="my-calendar" 
+                [(ngModel)]="date" 
+                [options]="optionsBasic" 
+                (monthChange)="monthChange($event)" 
+                [type]="'moment'">
+  </ion-calendar>
+  <p>{{date}}</p>
 </ion-content>

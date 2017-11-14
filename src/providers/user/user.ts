@@ -107,6 +107,24 @@ export class UserProvider {
     });
   }
 
+  subjectBasedAttnd( AuthToken: string, SubjectID: string) {
+    let headers = new Headers({
+      'AuthToken':  AuthToken
+    });
+
+    let options = new RequestOptions({
+      headers: headers
+    });
+    return new Promise(resolve => {
+      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetDateWiseAttendance?StartDate="+" "+"&EndDate="+" "+"&SubjectID="+SubjectID, options)
+        .map(res => res.json())
+        .subscribe(
+        data => { resolve(data) },
+        err => { console.log(err) }
+        );
+    });
+  }
+
   getTodaysAttendance(AuthToken:string){
     let headers = new Headers({
       'AuthToken':  AuthToken

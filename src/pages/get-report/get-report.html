@@ -1,0 +1,37 @@
+<!--
+  Generated template for the GetReportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align:center">Smart Roll Call</ion-title>
+
+    <button ion-button clear small menuToggle="right" icon-only right>
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+
+  </ion-navbar>
+  <div style="height:50px">
+    <p style="text-align:center">
+      <span style="color:#488aff">select Start Date and End Date from calender for report</span>
+    </p>
+  </div>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-calendar [(ngModel)]="dateRangeObj" [options]="optionsRange" [format]="format">
+  </ion-calendar>
+  <p>{{dateRangeObj | json}}</p>
+
+  <button ion-button color=danger >Get Report</button>
+
+
+</ion-content>

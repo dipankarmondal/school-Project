@@ -1,39 +1,47 @@
 <!-- https://stackoverflow.com/questions/34306816/ionic-conditional-text-color -->
 <!--https://devdactic.com/ionic-calendar-app/ -->
 <ion-header>
-    
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-    <ion-title>Student Corner</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align:center">Smart Roll Call</ion-title>
+   
+      <button ion-button clear small menuToggle="right" icon-only right>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
     
-  </ion-navbar>
-  
+    </ion-navbar>
+  <div style="height:25px">
+    <p style="text-align:center">Student Corner</p>
+  </div>
+
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-fab top right edge>
-        <button ion-fab mini menuToggle="right"><ion-icon name="notifications"></ion-icon></button>
-      </ion-fab>
-  <div style="height: 15%">
-    <h4>name: {{user?.Name}}</h4>
-    <label>Roll no. : {{user?.UserName}}</label>
+  <div >
+    <ion-item style="height: 15%;">
+      <ion-avatar item-start>
+        <img src="../assets/imgs/img_avatar2.png" alt="no image">
+      </ion-avatar>
+      <h4> {{user?.Name}}</h4>
+      <label>Roll no. : {{user?.UserName}}</label>
+    </ion-item>
   </div>
 
   <ion-slides style="height: 85%" pager>
     <ion-slide>
       <div>
-          <ion-card-header>Performance Chart in percentage </ion-card-header>
-          <canvas #doughnutCanvas></canvas>
+        <ion-card-header>Performance Chart in percentage </ion-card-header>
+        <canvas #doughnutCanvas></canvas>
       </div>
       <button ion-button clear full (click)="performanceList()">Get subject wise performance</button>
     </ion-slide>
 
-    <ion-slide >
-      <div>2nd slide</div>  
+    <ion-slide>
+      <div>2nd slide</div>
     </ion-slide>
   </ion-slides>
 
