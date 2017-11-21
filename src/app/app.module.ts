@@ -15,8 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPageModule } from '../pages/login/login.module';
-import { ForgotPasswordPageModule } from '../pages/forgot-password/forgot-password.module';
-import { RegisterPageModule } from '../pages/register/register.module';
+
 import { StudentCornerPageModule } from '../pages/student-corner/student-corner.module';
 import { SubjectWisePerformancePageModule } from '../pages/subject-wise-performance/subject-wise-performance.module';
 import { SubjectDetailsPageModule } from '../pages/subject-details/subject-details.module';
@@ -54,8 +53,6 @@ import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
 
     LoginPageModule,
     StudentCornerPageModule,
-    RegisterPageModule,
-    ForgotPasswordPageModule,
     SubjectWisePerformancePageModule,
     SubjectDetailsPageModule,
     AbsentPageModule,

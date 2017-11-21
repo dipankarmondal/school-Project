@@ -43,9 +43,7 @@ export class LoginPage {
   }
 
 
-  createAccount() {
-    this.navCtrl.push('RegisterPage');
-  }
+
 
   login() {
 

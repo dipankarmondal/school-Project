@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { DateTime } from 'ionic-angular/components/datetime/datetime';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-t-student-attendence',
@@ -23,6 +24,7 @@ export class TStudentAttendencePage {
   shortRemarkList: any;
   shortNameList: any;
   shortIdList: any;
+  
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -59,7 +61,7 @@ export class TStudentAttendencePage {
         this.attendenceList = data;
         this.items = data;
         this.shortRemarkList= data;
-        this.shortNameList= data;
+        this.shortNameList= JSON.stringify(data);
         this.shortIdList= data;
       });
     });
@@ -77,20 +79,42 @@ export class TStudentAttendencePage {
     });
   }
 
-  shortStatus(){
+  /* shortStatus(){
     this.shortRemarkList = this.attendenceList.sort(function(a, b){return a - b});
     return this.shortRemarkList;
-  }
+  } */
+
+ sortByProperty = function(property){
+  return function (x, y) {
+    
+            return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+    
+        };
+}
 
   shortName(){
-    this.shortNameList = this.attendenceList.sort();
-    return this.shortNameList;
+    console.log('clicked')
+    this.attendenceList= this.shortNameList.sort(this.sortByProperty('StudentName'));
+    console.log('sortlist: ' + JSON.stringify(this.shortNameList.sort(this.sortByProperty('StudentName'))));
+    /* this.shortNameList = JSON.parse(JSON.stringify(this.attendenceList)).StudentName.sort();
+    return this.shortNameList; */
+
+/*      this.shortNameList = this.attendenceList.sortBy(this.shortNameList, 'StudentName')
+    console.log('shorted: ' + this.shortNameList)
+    return this.shortNameList;  */
+
+/*     Array.prototype.sortBy = function(p) {
+      return this.slice(0).sort(function(a,b) {
+        return (a[p] > b[p]) ? 1 : (a[p] < b[p]) ? -1 : 0;
+      });
+    }
+    this.shortNameList.sortBy('age'); */
   }
 
-  shortid(){
+/*   shortid(){
     this.shortIdList = this.attendenceList.sort(function(a, b){return a - b});
     return this.shortIdList;
-  }
+  } */
 
   nxt() {
     this.navCtrl.push('TClassAggregateListPage')
