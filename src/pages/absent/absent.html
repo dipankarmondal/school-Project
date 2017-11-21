@@ -1,49 +1,44 @@
-<!--
-  Generated template for the AbsentPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-    <ion-navbar>
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title style="text-align:center">Smart Roll Call</ion-title>
     
-        <button ion-button clear small menuToggle="right" icon-only right>
-          <ion-icon name="notifications"></ion-icon>
-        </button>
+        <ion-navbar>
+            <button ion-button menuToggle>
+              <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title style="text-align:center">Smart Roll Call</ion-title>
+        
+            <button ion-button clear small menuToggle="right" icon-only right>
+              <ion-icon name="notifications"></ion-icon>
+            </button>
+        
+          </ion-navbar>
+          <div >
+              <div style="text-align:center"  ion-item>
+                  <p>{{user?.Name}} </p>
+                  <p>Roll No. {{user?.UserID}}</p>
+                  <p>Subject Code: {{subject?.SubjectCode}}</p>
+              </div>
+              <div style="height:10px">
+                  <div style="width:80%; float:left; color:#488aff"> Date </div>
+                  <div style="width:20%; float:left; color:#488aff"> Status </div>
+                </div>
+            </div>
+    </ion-header>
     
-      </ion-navbar>
-      <div>
-        <p style="text-align:center">
-          <span style="font-weight:bold"> {{user?.Name}} </span>
-          <br>
-          <span style="float:left;">Subject Code: {{subject?.SubjectCode}}</span>
-          <span style="float:right">Roll No. {{user?.UserRole}}</span>
-          <br>
-          <span style="float:left; color: red">Absent: {{subject?.Absent}}</span>
-          <span style="color:red; float:right">Absent %: {{subject?.AbsentPercentage}}%</span>
     
-        </p>
+    <ion-content padding>
+      <div >
+      
+    
+      
+    
+      <h3 *ngFor="let item of filteredData" ion-item >
+          <div style="width:80%; float: left; color:rgb(139, 0, 0);"> {{item.strAttendanceDate}} </div>
+          <div style="width:20%; float: right">
+            <span  style="color:rgb(139, 0, 0); font-weight: bold;"> {{item.Remarks}}</span>
+          </div>
+      
+        </h3>
       </div>
-
-</ion-header>
-
-
-<ion-content padding>
-  <div ion-item style="height:10px">
-    <div style="width:80%; float:left; color:#488aff"> Date </div>
-    <div style="width:20%; float:left; color:#488aff"> Status </div>
-  </div>
-
-  <h3 *ngFor="let item of filteredData" ion-item style="background-color:rgb(255, 185, 185)">
-    <div style="width:80%; float: left"> {{item.AttendanceDate}} </div>
-    <div style="width:20%; float: right">
-      <span  style="color:red; font-weight: bold;"> {{item.Remarks}}</span>
-    </div>
-
-  </h3>
-</ion-content>
+    </ion-content>
+    

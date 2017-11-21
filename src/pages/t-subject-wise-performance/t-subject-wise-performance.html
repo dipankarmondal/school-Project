@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align:center">Smart Roll Call</ion-title>
+
+    <button ion-button clear small menuToggle="right" icon-only right>
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+
+  </ion-navbar>
+  <div>
+    <p style="text-align:center">Your subject wise Status
+      <br>
+      <b>Subject code: {{subject?.SubjectCode}}</b>
+    </p>
+  </div>
+  <div  style="text-align:center; z-index: 1" padding>
+      <div style="text-align:center; float:left; width:40%"> Date </div>
+      <div style="text-align:left; float:left; width:20%">P</div>
+      <div style="text-align:left; float:left; width:20%"> A </div>
+      <div style="text-align:left; float:left; width:20%">% </div>
+  </div>
+
+</ion-header>
+
+
+
+<ion-content padding>
+  <h5 *ngFor="let item of attendenceList" ion-item (click)="attend($event, item)">
+    <div style="float:left; width:40%"> {{item.strAttendanceDate}}</div>
+    <div style="float:left; width:20%; color:green"> {{item.Present}} </div>
+    <div style="float:left; width:20%; color:red"> {{item.Absent}} </div>
+    <div style="float:left; width:20%"> {{item.PresentPercentage}}% </div>
+  </h5>
+</ion-content>

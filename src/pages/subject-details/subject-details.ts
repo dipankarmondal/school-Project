@@ -34,10 +34,6 @@ export class SubjectDetailsPage {
     
   }
 
-  subjectAttentList(){
-    return this.attendenceList;
-  }
-
 
   subjectAttendence() {
     console.log('subject clicked');

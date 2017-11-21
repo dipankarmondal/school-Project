@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align:center">Smart Roll Call</ion-title>
+
+    <button ion-button clear small menuToggle="right" icon-only right>
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+
+  </ion-navbar>
+  <div style="height:25px">
+    <p style="text-align:center">Your Subject</p>
+  </div>
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <ion-item style="height: 20%;">
+      <ion-avatar item-start>
+        <img src="../assets/imgs/img_avatar2.png" alt="no image">
+      </ion-avatar>
+      <h4 style="font-weight:bold"> {{teacher?.Name}}</h4>
+      <label>ID No. : {{teacher?.CardNo}}</label>
+    </ion-item>
+  </div>
+
+  <ion-slides style="height:80%" pager>
+    <ion-slide>
+      <p ion-item style="text-align:center; font-weight:bold">Subject wise Attendance details</p>
+      <div>
+        <ion-list>
+          <ion-card *ngFor="let item of attendenceList" style=" background-color:rgb(240, 248, 255)">
+            <div>
+              <div>
+                <button style="width:100%; height:35px ; background-color:#8eb6fc; font-weight: bold; color:rgb(13, 13, 122)" (click)="subDetails($event, item)">{{item.SubjectCode}}</button>
+              </div>
+              <div style="width:50%; float:left">
+                <div>
+                  <button style="width:100%; height:30px; background-color:#b5ffc9; font-weight: bold; color:rgb(0, 110, 0)">{{item.PresentPercentage}} %</button>
+                </div>
+              </div>
+
+              <div style="width:50%; float:left">
+                <div>
+                  <button style="width:100%; height:30px; background-color:#ffbebe;font-weight: bold; color:rgb(201, 0, 0)">{{item.AbsentPercentage}} %</button>
+                </div>
+              </div>
+            </div>
+          </ion-card>
+        </ion-list>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <p ion-item>
+          <b>Subject wise student performance</b>
+        </p>
+        <ion-list style="text-align:center; color:#79a7f8;height:10px">
+          <div style="width:50%; float:left"> Subject Code</div>
+          <div style="width:50%; float:left"> Percentage</div>
+        </ion-list>
+        <ion-list *ngFor="let item of attendenceList" ion-item style="text-align:center" (click)="subjectDetails($event, item)">
+          <div style="width:50%; float:left"> {{item.SubjectCode}}</div>
+          <div style="width:50%; float:left"> {{item.PresentPercentage}}%</div>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

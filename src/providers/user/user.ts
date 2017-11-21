@@ -142,5 +142,22 @@ export class UserProvider {
         );
     });
   }
+  getNotice(AuthToken: string){
+    let headers = new Headers({
+      'AuthToken':  AuthToken
+    });
+
+    let options = new RequestOptions({
+      headers: headers
+    });
+    return new Promise(resolve => {
+      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetNotice?StartDate=&EndDate=&RecordCount=10", options)
+        .map(res => res.json())
+        .subscribe(
+        data => { resolve(data) },
+        err => { console.log(err) }
+        );
+    });
+  }
 
 }

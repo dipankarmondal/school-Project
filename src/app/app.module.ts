@@ -23,11 +23,18 @@ import { SubjectDetailsPageModule } from '../pages/subject-details/subject-detai
 import { AbsentPageModule } from '../pages/absent/absent.module';
 import { PresentPageModule } from '../pages/present/present.module';
 
+import {  TClassAggregateListPageModule } from '../pages/t-class-aggregate-list/t-class-aggregate-list.module';
+import { TStudentAttendencePageModule } from '../pages/t-student-attendence/t-student-attendence.module';
+import { TSubjectWisePerformancePageModule } from '../pages/t-subject-wise-performance/t-subject-wise-performance.module';
+import { TStudentAttendenceListPageModule } from '../pages/t-student-attendence-list/t-student-attendence-list.module';
+import { TGetSubjectWiseStudentAttendanceListPageModule } from '../pages/t-get-subject-wise-student-attendance-list/t-get-subject-wise-student-attendance-list.module';
+
 
 import { UserProvider } from '../providers/user/user';
 import { NgCalendarModule  } from 'ionic2-calendar';
 //import { CalendarModule } from '../components/ion2-calendar'
 import { CalendarModule } from "ion2-calendar";
+import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
 
 
 
@@ -44,16 +51,24 @@ import { CalendarModule } from "ion2-calendar";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+
     LoginPageModule,
     StudentCornerPageModule,
     RegisterPageModule,
     ForgotPasswordPageModule,
     SubjectWisePerformancePageModule,
     SubjectDetailsPageModule,
-    HttpModule,
-    NgCalendarModule,
     AbsentPageModule,
     PresentPageModule,
+
+    TStudentAttendencePageModule,
+    TClassAggregateListPageModule,
+    TSubjectWisePerformancePageModule,
+    TStudentAttendenceListPageModule,
+    TGetSubjectWiseStudentAttendanceListPageModule,
+    
+    HttpModule,
+    NgCalendarModule,
     CalendarModule
   ],
 
@@ -69,7 +84,8 @@ import { CalendarModule } from "ion2-calendar";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    UserTeacherProvider
   ]
 })
 export class AppModule {}

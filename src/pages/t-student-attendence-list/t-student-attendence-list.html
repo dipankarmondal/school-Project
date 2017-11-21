@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align:center" *ngIf="!toggled">Smart Roll Call</ion-title>
+
+    <button ion-button clear small menuToggle="right" icon-only right *ngIf="!toggled">
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+
+    <ion-searchbar *ngIf="toggled" [(ngModel)]="searchstudent" [showCancelButton]="true" cancelButtonText="close" (ionCancel)="toggleSearch()"
+      (ionInput)="getFilteredItem($event)"></ion-searchbar>
+    <ion-buttons end *ngIf="!toggled">
+      <button ion-button icon-only (click)="toggleSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <button ion-button clear small menuToggle="right" icon-only right>
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+
+  </ion-navbar>
+  <div>
+    <p style="text-align:center"> Subject wise student attendence
+      <br>
+      <span>
+        <b>Subject Code: {{student?.SubjectCode}}</b>
+      </span>
+    </p>
+    <div style="text-align:center; color:rgb(0, 153, 255); z-index: 1" padding>
+        <div style="text-align:center; width: 20%; float: left">Student ID</div>
+        <div style="text-align:center; width: 60%; float: left"> Name </div>
+        <div style="text-align:center; width: 20%; float: left">%</div>
+      </div>
+  </div>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row *ngFor="let item of attendenceList" style="padding:10px" (click)="listPage($event, item)">
+    <div style="float:left; width:20%;  ">
+      <span *ngIf="item.PresentPercentage <'40'" style="color:rgb(194, 2, 2); font-weight:bold">&nbsp;{{item.StudentID}}&nbsp;</span>
+      <span *ngIf="item.PresentPercentage >'40' && item.PresentPercentage <'60'" style="color:rgb(255, 123, 0); font-weight:bold">&nbsp;{{item.StudentID}}&nbsp;</span>
+      <span *ngIf="item.PresentPercentage >'60'" style="color:green; font-weight:bold">&nbsp;{{item.StudentID}}&nbsp;</span>
+    </div>
+    <div style="width:60%; float:left">{{item.StudentName}}</div>
+    <div style="width:20%; float:left; ">
+      <span *ngIf="item.PresentPercentage <'40'" style="color:rgb(194, 2, 2); font-weight:bold">{{item.PresentPercentage}}%</span>
+      <span *ngIf="item.PresentPercentage >'40' && item.PresentPercentage <'60'" style="color:rgb(255, 123, 0); font-weight:bold">{{item.PresentPercentage}}%</span>
+      <span *ngIf="item.PresentPercentage >'60'" style="color:green; font-weight:bold">{{item.PresentPercentage}}%</span>
+    </div>
+  </ion-row>
+</ion-content>

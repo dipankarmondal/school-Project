@@ -22,27 +22,33 @@
 
 <ion-content padding>
   <div >
-    <ion-item style="height: 15%;">
+    <ion-item style="height: 20%;">
       <ion-avatar item-start>
         <img src="../assets/imgs/img_avatar2.png" alt="no image">
       </ion-avatar>
-      <h4> {{user?.Name}}</h4>
+      <h4 style="font-weight:bold"> {{user?.Name}}</h4>
       <label>Roll no. : {{user?.UserName}}</label>
     </ion-item>
   </div>
-
-  <ion-slides style="height: 85%" pager>
-    <ion-slide>
-      <div>
-        <ion-card-header>Performance Chart in percentage </ion-card-header>
-        <canvas #doughnutCanvas></canvas>
-      </div>
-      <button ion-button clear full (click)="performanceList()">Get subject wise performance</button>
+<div style="height: 80%">
+  <ion-slides  pager>
+    <ion-slide >
+      <div style="height:80%">
+        <ion-card-header class="header">Performance Chart in percentage </ion-card-header>
+        <br>
+        
+        <canvas #doughnutCanvas height="80%" width="90%"></canvas>
+        <br>
+      </div >
+      <br>
+      
+      <div class="footer" style="height:20%"><button ion-button clear full (click)="performanceList()">Get subject wise performance</button></div>
+      <br>
     </ion-slide>
 
     <ion-slide>
       <div>2nd slide</div>
     </ion-slide>
   </ion-slides>
-
+</div>
 </ion-content>

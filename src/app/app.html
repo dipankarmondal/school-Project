@@ -1,16 +1,21 @@
 <ion-menu [content]="content">
   <ion-header>
-      <div >
-          <ion-item style="height: 100px">
-            <ion-avatar class="avatar" item-start>
-              <img src="./assets/imgs/img_avatar2.png" style="width:60px; height: 60%" alt="no image">
-            </ion-avatar>
-            
-            <h6>Roll No. {{user?.CardNo}} :</h6>
-            <h6>User Type: <span *ngIf="user?.UserRole=='3'"> Student</span> </h6>
-          </ion-item>
-          <h6 style="text-align:center">{{user?.Name}}</h6>
-        </div>
+    <div>
+      <ion-item style="height: 100px">
+        <ion-avatar class="avatar" item-start>
+          <img src="./assets/imgs/img_avatar2.png" style="width:60px; height: 60%" alt="no image">
+        </ion-avatar>
+
+        <h6>
+          <span *ngIf="user?.UserRole=='3'"> Roll No. {{user?.UserName}}</span>
+          <span *ngIf="user?.UserRole=='2'"> ID No. {{user?.CardNo}}</span>  </h6>
+        <h6>User Type:
+          <span *ngIf="user?.UserRole=='3'"> Student</span>
+          <span *ngIf="user?.UserRole=='2'"> Teacher</span>
+        </h6>
+      </ion-item>
+      <h6 style="text-align:center">{{user?.Name}}</h6>
+    </div>
 
   </ion-header>
 
@@ -33,10 +38,26 @@
 
 <ion-menu [content]="content" side="right" id="notification">
   <ion-content>
+    <div ion-item>Your Active notices</div>
     <ion-list>
-      <button ion-item menuClose="notification" detail-none>
-        Close Menu 2
-      </button>
+
+      <ion-card *ngFor="let item of notice">
+        <ion-card-header style="background-color:rgb(1, 141, 141)">
+          <div>
+            Notice from:
+            <span *ngIf="item.CreatedBy=='1'"> ADMIN </span>
+          </div>
+          <div>
+            {{item.CreatedOn | date: "dd-MMM-yyyy "}}
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          {{item.Message}}
+        </ion-card-content>
+      </ion-card>
+
+
+
     </ion-list>
   </ion-content>
 </ion-menu>

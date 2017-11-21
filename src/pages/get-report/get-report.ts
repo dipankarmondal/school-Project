@@ -22,7 +22,7 @@ export class GetReportPage {
   date: any = moment(moment().format('YYYY-MM-DD')).add(1, 'month');
   dateMulti = [];
   optionsBasic: CalendarComponentOptions = { };
-  dateRangeObj = { from: moment().format('YYYY-MM-DD'), to: moment().add(6, 'd').format('YYYY-MM-DD') };
+  //dateRangeObj = { from: moment().format('YYYY-MM-DD'), to: moment().add('', 'd').format('YYYY-MM-DD') };
   format = 'YYYY-MM-DD';
 
   optionsRange: CalendarComponentOptions = {
@@ -30,7 +30,7 @@ export class GetReportPage {
     to: new Date(2020, 11, 31),
     pickMode: 'range',
     weekStart: 1,
-    weekdays: ['0', '1', '2', '3', '4', '5', '6'],
+    weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   };
 
   constructor(public navCtrl: NavController,

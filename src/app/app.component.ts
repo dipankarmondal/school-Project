@@ -12,6 +12,8 @@ import { CalenderPage } from '../pages/calender/calender';
 import { GetReportPage } from '../pages/get-report/get-report';
 import { Icon } from 'ionic-angular/components/icon/icon';
 
+import { UserProvider } from '../providers/user/user';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,11 +25,13 @@ export class MyApp {
   pages: Array<{title: string, component: any , icon: any}>;
 
   user: any;
+  notice: any;
   constructor(public platform: Platform,
      public statusBar: StatusBar, 
      public splashScreen: SplashScreen,
      public alertCtrl: AlertController,
-     public storage: Storage,) {
+     public storage: Storage,
+     public userProvider: UserProvider) {
     this.initializeApp();
 
     this.storage.get('token').then((value) => {
@@ -45,7 +49,21 @@ export class MyApp {
       { title: 'Get Report', component: GetReportPage, icon:'home'}
     ];
 
+    this.getNotice();
+
   }
+
+  getNotice(){
+    console.log('subject clicked');
+    this.storage.get('token').then((value) => {
+      console.log('subtoken: ' + JSON.parse(value).AuthToken);
+      this.userProvider.getNotice(JSON.parse(value).AuthToken).then(data => {
+        console.log('list2: ' + data)
+        this.notice = data;
+      });
+    });
+  }
+
 
   initializeApp() {
     this.platform.ready().then(() => {

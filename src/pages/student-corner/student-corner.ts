@@ -56,11 +56,11 @@ export class StudentCornerPage {
               data: [this.a, this.p],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(50, 219, 100, 0.2)'
               ],
               hoverBackgroundColor: [
                 "#FF6384",
-                "#36A2EB", ,
+                "#32DB64", ,
               ]
             }]
           }

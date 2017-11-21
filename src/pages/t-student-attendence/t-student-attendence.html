@@ -1,0 +1,49 @@
+<ion-header>
+
+  
+    <ion-navbar >
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title style="text-align:center" *ngIf="!toggled">Smart Roll Call</ion-title>
+
+      <button ion-button clear small menuToggle="right" icon-only right *ngIf="!toggled">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+
+      <ion-searchbar *ngIf="toggled" [(ngModel)]="searchstudent" [showCancelButton]="true" cancelButtonText="close" (ionCancel)="toggleSearch()"
+        (ionInput)="getFilteredItem($event)"></ion-searchbar>
+      <ion-buttons end *ngIf="!toggled">
+        <button ion-button icon-only (click)="toggleSearch()" >
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
+
+    </ion-navbar>
+    <div >
+        <div style="text-align:center"  ion-item>
+            <p>Student Attendence for <br> Subject Code: {{student?.SubjectCode}}<br> {{student?.strAttendanceDate}}</p>
+        </div>
+        <div style="height:20px; text-align:center; z-index: 1" padding>
+            <div style="text-align:center; width:20%; float:left; color:#488aff" (click)="shortid()"> Student ID </div>
+            <div style="text-align:center; width:60%; float:left; color:#488aff" (click)="shortName()"> Name </div>
+            <div style="text-align:center; width:20%; float:left; color:#488aff" (click)="shortStatus()"> Status </div>
+          </div>
+      </div>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row *ngFor="let item of attendenceList" style="padding:5px">
+    <div style="width:20%; float:left">
+      <span *ngIf="item.Remarks=='A'" style="font-weight:bold; color:rgb(216, 3, 3)">{{item.StudentID}}</span>
+      <span *ngIf="item.Remarks=='P'" style=" color:rgb(2, 114, 2); font-weight:bold">{{item.StudentID}}</span>
+    </div>
+    <div style="width:60%; float:left; ">{{item.StudentName}} </div>
+    <div style="width:20%; float:left; z-index: 1; text-align:center">
+      <span *ngIf="item.Remarks=='A'" style="font-weight:bold; color:rgb(216, 3, 3)">{{item.Remarks}}</span>
+      <span *ngIf="item.Remarks=='P'" style=" color:rgb(2, 114, 2); font-weight:bold">{{item.Remarks}}</span>
+    </div>
+  </ion-row>
+</ion-content>

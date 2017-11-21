@@ -11,12 +11,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title style="text-align:center">Smart Roll Call</ion-title>
-   
-      <button ion-button clear small menuToggle="right" icon-only right>
-        <ion-icon name="notifications"></ion-icon>
-      </button>
-    
-    </ion-navbar>
+
+    <button ion-button clear small menuToggle="right" icon-only right>
+      <ion-icon name="notifications"></ion-icon>
+    </button>
+
+  </ion-navbar>
   <div style="height:25px">
     <p style="text-align:center">Your subject wise Status</p>
   </div>
@@ -24,38 +24,29 @@
 </ion-header>
 
 
-<ion-content >
+<ion-content>
 
   <div>
-    <ion-list >
-      <ion-card *ngFor="let item of aggregateList"  style=" background-color:rgb(240, 248, 255)">
-<!--         <div style="float:left; width:100px">
-          <div style="background-color:#488aff">
-            <button ion-button clear full (click)="showCalender()" style="color:white">{{item.SubjectCode}}</button>
-          </div>
-          <div color="dark">
-            <button ion-button clear style="color:green ; float:left; " >{{item.PresentPercentage}} %</button>
-            
-          </div>
-            
-            
-        </div>
-        
-        <canvas #doughnutCanvas style="float:left; width:60%;"></canvas> -->
-      <div>
-        <div><button style="width:100%; height:35px ; background-color:#8eb6fc; font-weight: bold; color:rgb(13, 13, 122)" (click)="subDetails($event, item)">{{item.SubjectCode}}</button></div>
-        <div style="width:50%; float:left">
+    <ion-list>
+      <ion-card *ngFor="let item of aggregateList" style=" background-color:rgb(240, 248, 255)">
+        <div>
           <div>
-            <button style="width:100%; height:30px; background-color:#b5ffc9; font-weight: bold; color:rgb(0, 110, 0)" (click)="present($event, item)">{{item.Present}}<br>{{item.PresentPercentage}}%</button>
+            <button style="width:100%; height:35px ; background-color:#8eb6fc; font-weight: bold; color:rgb(13, 13, 122)" (click)="subDetails($event, item)">{{item.SubjectCode}}</button>
           </div>
-        </div>
-
-        <div style="width:50%; float:left">
+          <div style="width:50%; float:left">
             <div>
-              <button style="width:100%; height:30px; background-color:#ffbebe;font-weight: bold; color:rgb(201, 0, 0)" (click)="absent($event, item)">{{item.Absent}}<br>{{item.AbsentPercentage}}%</button>
+              <button style="width:100%; height:30px; background-color:#b5ffc9; font-weight: bold; color:rgb(0, 110, 0)" (click)="present($event, item)">{{item.Present}}
+                <br>{{item.PresentPercentage}}%</button>
             </div>
           </div>
-      </div>
+
+          <div style="width:50%; float:left">
+            <div>
+              <button style="width:100%; height:30px; background-color:#ffbebe;font-weight: bold; color:rgb(201, 0, 0)" (click)="absent($event, item)">{{item.Absent}}
+                <br>{{item.AbsentPercentage}}%</button>
+            </div>
+          </div>
+        </div>
       </ion-card>
     </ion-list>
   </div>

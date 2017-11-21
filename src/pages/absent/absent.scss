@@ -1,7 +1,10 @@
 page-absent {
-    span{
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+    
     h3:nth-child(even){background-color: rgb(252, 227, 227)}
+    #header{
+        position: fixed;
+        top:10%;
+        width: 100%;
+        z-index: 1
+      }
 }
