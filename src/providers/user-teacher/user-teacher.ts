@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
+
 
 @Injectable()
 export class UserTeacherProvider {
-
-  constructor(public http: Http) {
+  myApi: any;
+  mystr: any;
+  constructor(public http: Http,
+    public storage: Storage) {
     console.log('Hello UserTeacherProvider Provider');
+    this.storage.get('IP').then((value) => {
+      this.myApi= value;
+      console.log('your API: ' + this.myApi);
+    })
   }
 
   GetDateWiseStudentWiseAttendance(AuthToken: string, date: string, SubjectID: string) {
@@ -18,7 +26,7 @@ export class UserTeacherProvider {
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://192.168.0.94:83/SmartRollCall/api/WebRequest/GetDateWiseStudentWiseAttendance?StartDate=" + date + "&EndDate=" + date + "&SubjectID=" + SubjectID, options)
+      this.http.get(this.myApi+"/api/WebRequest/GetDateWiseStudentWiseAttendance?StartDate=" + date + "&EndDate=" + date + "&SubjectID=" + SubjectID, options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -37,7 +45,7 @@ export class UserTeacherProvider {
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetProfessorClassAggregateList", options)
+      this.http.get(this.myApi+"/api/WebRequest/GetProfessorClassAggregateList", options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -55,7 +63,7 @@ export class UserTeacherProvider {
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetDateWiseStudentClassAggregateList?StartDate=&EndDate=&SubjectID=" + SubjectID, options)
+      this.http.get(this.myApi+"/api/WebRequest/GetDateWiseStudentClassAggregateList?StartDate=&EndDate=&SubjectID=" + SubjectID, options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -73,7 +81,7 @@ export class UserTeacherProvider {
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetProfessorAllClassAggregate", options)
+      this.http.get(this.myApi+"/smartrollcall/api/WebRequest/GetProfessorAllClassAggregate", options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -91,7 +99,7 @@ export class UserTeacherProvider {
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetStudentWiseClassAggregateList?StartDate=&EndDate=&SubjectID=" + SubjectID, options)
+      this.http.get(this.myApi+"/api/WebRequest/GetStudentWiseClassAggregateList?StartDate=&EndDate=&SubjectID=" + SubjectID, options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -100,7 +108,7 @@ export class UserTeacherProvider {
     });
   }
 
-  GetSubjectWiseStudentAttendanceList(AuthToken: string, SubjectID: string, StudentID: string){
+  GetSubjectWiseStudentAttendanceList(AuthToken: string, SubjectID: string, StudentID: string) {
     let headers = new Headers({
       'AuthToken': AuthToken
     });
@@ -109,7 +117,7 @@ export class UserTeacherProvider {
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetSubjectWiseStudentAttendanceList?StartDate=&EndDate=&SubjectID="+SubjectID+"&StudentID="+StudentID, options)
+      this.http.get(this.myApi+"/api/WebRequest/GetSubjectWiseStudentAttendanceList?StartDate=&EndDate=&SubjectID=" + SubjectID + "&StudentID=" + StudentID, options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },

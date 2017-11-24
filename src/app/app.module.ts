@@ -10,11 +10,13 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CalenderPage} from '../pages/calender/calender';
 import { GetReportPage } from '../pages/get-report/get-report';
+import { CreateNoticePage } from '../pages/create-notice/create-notice';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPageModule } from '../pages/login/login.module';
+import { SettingsPageModule } from '../pages/settings/settings.module';
 
 import { StudentCornerPageModule } from '../pages/student-corner/student-corner.module';
 import { SubjectWisePerformancePageModule } from '../pages/subject-wise-performance/subject-wise-performance.module';
@@ -43,7 +45,8 @@ import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
     HomePage,
     ListPage,
     CalenderPage,
-    GetReportPage
+    GetReportPage,
+    CreateNoticePage
   ],
 
   imports: [
@@ -51,6 +54,7 @@ import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
 
+    SettingsPageModule,
     LoginPageModule,
     StudentCornerPageModule,
     SubjectWisePerformancePageModule,
@@ -75,7 +79,8 @@ import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
     HomePage,
     ListPage,
     CalenderPage,
-    GetReportPage
+    GetReportPage,
+    CreateNoticePage
   ],
   providers: [
     StatusBar,

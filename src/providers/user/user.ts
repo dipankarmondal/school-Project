@@ -30,38 +30,46 @@ export class DateWiseAtendenceDTO {
 export class UserProvider {
 
   // allClassAggregateDTO:AllClassAggregateDTO;
+  //ip: http://122.160.53.175:83/smartrollcall
+  //"+this.myIP+"
+  myIP: any;
+  mystr: any;
+  constructor(public http: Http,
+    public storage: Storage) {
 
-  constructor(public http: Http) {
     console.log('Hello UserProvider Provider');
+    this.storage.get('IP').then((value) => {
+      this.myIP= value;
+      console.log('your IP ' + this.myIP);
+    })
   }
 
 
   login(loginDTO: LoginDTO): any {
     console.log("func called");
-
+    this.mystr=this.myIP+"/api/WebRequest/Login?UserName=" 
     return new Promise(resolve => {
-
-      this.http.get("http://192.168.0.94:83/smartrollcall/api/WebRequest/Login?UserName=" + loginDTO.UserName + "&Password=" + loginDTO.Password)
+      console.log('str: ' + this.mystr)
+      this.http.get(this.myIP+"/api/WebRequest/Login?UserName=" + loginDTO.UserName + "&Password=" + loginDTO.Password)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
         err => { console.log(err) }
         );
-      console.log("func2 called");
-
+      console.log('my IP' + this.myIP);
     });
   }
 
   stdntAttendChart(AuthToken: string) {
     let headers = new Headers({
-      'AuthToken':  AuthToken
+      'AuthToken': AuthToken
     });
 
     let options = new RequestOptions({
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetAllClassAggregate", options)
+      this.http.get(this.myIP+"/api/WebRequest/GetAllClassAggregate", options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -72,14 +80,14 @@ export class UserProvider {
 
   getClassAggregateList(AuthToken: string) {
     let headers = new Headers({
-      'AuthToken':  AuthToken
+      'AuthToken': AuthToken
     });
 
     let options = new RequestOptions({
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetClassAggregateList", options)
+      this.http.get(this.myIP+"/api/WebRequest/GetClassAggregateList", options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -91,14 +99,14 @@ export class UserProvider {
 
   getDateWiseList(date: DateWiseAtendenceDTO, AuthToken: string) {
     let headers = new Headers({
-      'AuthToken':  AuthToken
+      'AuthToken': AuthToken
     });
 
     let options = new RequestOptions({
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetDateWiseAttendance?StartDate=" + date.StartDate + "&EndDate=" + date.EndDate + "&SubjectID=" + date.SubjectID, options)
+      this.http.get(this.myIP+"/WebRequest/GetDateWiseAttendance?StartDate=" + date.StartDate + "&EndDate=" + date.EndDate + "&SubjectID=" + date.SubjectID, options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -107,16 +115,16 @@ export class UserProvider {
     });
   }
 
-  subjectBasedAttnd( AuthToken: string, SubjectID: string) {
+  subjectBasedAttnd(AuthToken: string, SubjectID: string) {
     let headers = new Headers({
-      'AuthToken':  AuthToken
+      'AuthToken': AuthToken
     });
 
     let options = new RequestOptions({
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetDateWiseAttendance?StartDate="+" "+"&EndDate="+" "+"&SubjectID="+SubjectID, options)
+      this.http.get(this.myIP+"/api/WebRequest/GetDateWiseAttendance?StartDate=" + " " + "&EndDate=" + " " + "&SubjectID=" + SubjectID, options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -125,16 +133,16 @@ export class UserProvider {
     });
   }
 
-  getTodaysAttendance(AuthToken:string){
+  getTodaysAttendance(AuthToken: string) {
     let headers = new Headers({
-      'AuthToken':  AuthToken
+      'AuthToken': AuthToken
     });
 
     let options = new RequestOptions({
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetTodaysAttendance", options)
+      this.http.get(this.myIP+"/api/WebRequest/GetTodaysAttendance", options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },
@@ -142,16 +150,16 @@ export class UserProvider {
         );
     });
   }
-  getNotice(AuthToken: string){
+  getNotice(AuthToken: string) {
     let headers = new Headers({
-      'AuthToken':  AuthToken
+      'AuthToken': AuthToken
     });
 
     let options = new RequestOptions({
       headers: headers
     });
     return new Promise(resolve => {
-      this.http.get("http://122.160.53.175:83/smartrollcall/api/WebRequest/GetNotice?StartDate=&EndDate=&RecordCount=10", options)
+      this.http.get(this.myIP+"/api/WebRequest/GetNotice?StartDate=&EndDate=&RecordCount=0", options)
         .map(res => res.json())
         .subscribe(
         data => { resolve(data) },

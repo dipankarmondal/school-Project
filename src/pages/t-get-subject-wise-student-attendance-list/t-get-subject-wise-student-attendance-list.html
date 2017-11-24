@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>t-get-subject-wise-student-attendance-list</ion-title>
+    <ion-title>Smart Roll Call</ion-title>
   </ion-navbar>
   <div>
     <p style="text-align:center"> Date wise student attendence
@@ -19,7 +19,7 @@
       </span>
     </p>
     <div style="text-align:center; color:rgb(0, 153, 255); z-index: 1" padding>
-        <div style="text-align:center; width: 80%; float: left">Date</div>
+        <div style="text-align:center; width: 80%; float: left; text-align:left; padding-left:20px">Date</div>
         <div style="text-align:center; width: 20%; float: left">Status</div>
       </div>
   </div>
@@ -30,8 +30,14 @@
 
   <div>
     <ion-row *ngFor="let item of attendenceList" ion-item>
-      <div style="float:left; width: 80%">{{item.strAttendanceDate}}</div>
-      <div style="float:left; width: 20%">{{item.Remarks}}</div>
+      <div style="float:left; width: 80%">
+        <span *ngIf="item.Remarks=='A'" style="color:red">{{item.strAttendanceDate}}</span>
+        <span *ngIf="item.Remarks=='P'" style="color:green">{{item.strAttendanceDate}}</span>
+      </div>
+      <div style="float:left; width: 20%">
+        <span *ngIf="item.Remarks=='A'" style="color:red">{{item.Remarks}}</span>
+        <span *ngIf="item.Remarks=='P'" style="color:green">{{item.Remarks}}</span>
+      </div>
       
     </ion-row>
   </div>

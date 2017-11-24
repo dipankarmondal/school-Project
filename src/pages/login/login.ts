@@ -48,6 +48,7 @@ export class LoginPage {
   login() {
 
     console.log("login clickd");
+    
     this.userProvider.login(this.loginDTO).then(data => {
       if (data) {
         
@@ -66,6 +67,10 @@ export class LoginPage {
         
       }
     });
+  }
+
+  settings(){
+    this.navCtrl.push('SettingsPage');
   }
 
   ionViewDidLoad() {

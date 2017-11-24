@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { Storage } from '@ionic/storage';
 import { Subject } from 'rxjs/Subject';
@@ -18,20 +18,21 @@ export class SubjectDetailsPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public userProvider: UserProvider, ) {
+    public userProvider: UserProvider,
+    public menuCntlr: MenuController) {
 
-      this.storage.get('token').then((value) => {
-        console.log('Token : ' + JSON.parse(value));
-        console.log('Name : ' + JSON.parse(value).Name);
-        this.user = JSON.parse(value);
-  
-      })
+    this.storage.get('token').then((value) => {
+      console.log('Token : ' + JSON.parse(value));
+      console.log('Name : ' + JSON.parse(value).Name);
+      this.user = JSON.parse(value);
+
+    })
 
     this.subject = navParams.get('item');
-    
-    console.log('sub:'+this.subject);
+
+    console.log('sub:' + this.subject);
     this.subjectAttendence();
-    
+    this.menuCntlr.swipeEnable(true);
   }
 
 
@@ -47,7 +48,7 @@ export class SubjectDetailsPage {
   }
 
   ionViewDidLoad() {
-    
+
     console.log('ionViewDidLoad SubjectDetailsPage');
   }
 

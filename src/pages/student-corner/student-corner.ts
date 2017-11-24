@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+//import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+
 import { Storage } from '@ionic/storage';
 import { UserProvider } from '../../providers/user/user';
 
@@ -18,14 +20,20 @@ export class StudentCornerPage {
   doughnutChart: any;
   p: number;
   a: number;
-
+//private androidFullScreen: AndroidFullScreen
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public userProvider: UserProvider, ) {
+    public userProvider: UserProvider,
+    public menuCntlr: MenuController,
+    ) {
 
+/*       this.androidFullScreen.isImmersiveModeSupported()
+      .then(() => this.androidFullScreen.immersiveMode())
+      .catch((error: any) => console.log(error));
+ */
     this.loadStudentPrcnt();
 
     this.storage.get('token').then((value) => {
@@ -34,7 +42,7 @@ export class StudentCornerPage {
       this.user = JSON.parse(value);
 
     })
-
+    this.menuCntlr.swipeEnable(true);
   }
 
   loadStudentPrcnt() {

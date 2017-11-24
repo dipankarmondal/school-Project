@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController } from 'ionic-angular';
+import { Nav, Platform, AlertController,MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -10,6 +10,7 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { CalenderPage } from '../pages/calender/calender';
 import { GetReportPage } from '../pages/get-report/get-report';
+import { CreateNoticePage } from '../pages/create-notice/create-notice';
 import { Icon } from 'ionic-angular/components/icon/icon';
 
 import { UserProvider } from '../providers/user/user';
@@ -22,7 +23,8 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any , icon: any}>;
+  pages: Array<{title: string, component: any }>;
+  Tpages: Array<{title: string, component: any }>;
 
   user: any;
   notice: any;
@@ -31,6 +33,7 @@ export class MyApp {
      public splashScreen: SplashScreen,
      public alertCtrl: AlertController,
      public storage: Storage,
+     public menuCntlr: MenuController,
      public userProvider: UserProvider) {
     this.initializeApp();
 
@@ -40,13 +43,18 @@ export class MyApp {
       this.user = JSON.parse(value);
 
     })
-
+/* 
+      { title: 'Home', component: HomePage, icon:'home' },
+      { title: 'List', component: ListPage, icon:'home'  }, */
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage, icon:'home' },
-      { title: 'List', component: ListPage, icon:'home'  },
-      { title: 'Calender', component: CalenderPage, icon:'home' },
-      { title: 'Get Report', component: GetReportPage, icon:'home'}
+      { title: 'Calender', component: CalenderPage },
+      { title: 'Get Report', component: GetReportPage}
+    ];
+
+    this.Tpages = [
+      { title: 'Calender', component: CalenderPage },
+      { title: 'Create Notice', component: CreateNoticePage}
     ];
 
     this.getNotice();
@@ -63,6 +71,7 @@ export class MyApp {
       });
     });
   }
+
 
 
   initializeApp() {
@@ -98,7 +107,7 @@ export class MyApp {
             console.log('Logged out');
             this.storage.get('userStorage').then((data) => {
                 this.storage.clear();
-                //this.menuCntlr.swipeEnable(false).close();
+                this.menuCntlr.swipeEnable(false).close();
                 this.nav.push("LoginPage");
             });
             
