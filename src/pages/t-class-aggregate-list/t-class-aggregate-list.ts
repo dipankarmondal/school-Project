@@ -19,6 +19,7 @@ export class TClassAggregateListPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
+    public menuCntlr: MenuController,
     public teacherProvider: UserTeacherProvider, ) {
     this.storage.get('token').then((value) => {
       console.log('Token : ' + JSON.parse(value));
@@ -27,7 +28,7 @@ export class TClassAggregateListPage {
     })
 
     this.classAgregateList();
-   
+    this.menuCntlr.swipeEnable(true);
 
   }
 

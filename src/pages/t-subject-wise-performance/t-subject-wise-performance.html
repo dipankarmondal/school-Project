@@ -12,7 +12,7 @@
 
   </ion-navbar>
   <div>
-    <p style="text-align:center">Your subject wise Status
+    <p style="text-align:center">Your Date wise Status
       <br>
       <b>Subject code: {{subject?.SubjectCode}}</b>
     </p>
@@ -29,10 +29,10 @@
 
 
 <ion-content padding>
-  <h5 *ngFor="let item of attendenceList" ion-item (click)="attend($event, item)">
-    <div style="float:left; width:40%"> {{item.strAttendanceDate}}</div>
-    <div style="float:left; width:20%; color:green"> {{item.Present}} </div>
-    <div style="float:left; width:20%; color:red"> {{item.Absent}} </div>
-    <div style="float:left; width:20%"> {{item.PresentPercentage}}% </div>
+  <h5 *ngFor="let item of attendenceList" ion-item >
+    <div style="float:left; width:40%" (click)="attend($event, item)"> {{item.strAttendanceDate}}</div>
+    <div style="float:left; width:20%; color:green" (click)="present($event, item)"> {{item.Present}} </div>
+    <div style="float:left; width:20%; color:red" (click)="absent($event, item)"> {{item.Absent}} </div>
+    <div style="float:left; width:20%" (click)="attend($event, item)"> {{item.PresentPercentage}}% </div>
   </h5>
 </ion-content>

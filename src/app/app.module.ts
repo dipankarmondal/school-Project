@@ -29,13 +29,16 @@ import { TStudentAttendencePageModule } from '../pages/t-student-attendence/t-st
 import { TSubjectWisePerformancePageModule } from '../pages/t-subject-wise-performance/t-subject-wise-performance.module';
 import { TStudentAttendenceListPageModule } from '../pages/t-student-attendence-list/t-student-attendence-list.module';
 import { TGetSubjectWiseStudentAttendanceListPageModule } from '../pages/t-get-subject-wise-student-attendance-list/t-get-subject-wise-student-attendance-list.module';
-
+import { TSubjectDateAbsentPageModule } from '../pages/t-subject-date-absent/t-subject-date-absent.module';
+import { TSubjectDatePresentPageModule } from '../pages/t-subject-date-present/t-subject-date-present.module';
 
 import { UserProvider } from '../providers/user/user';
 import { NgCalendarModule  } from 'ionic2-calendar';
 //import { CalendarModule } from '../components/ion2-calendar'
 import { CalendarModule } from "ion2-calendar";
 import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
+import { TSubjectDatePresentPage } from '../pages/t-subject-date-present/t-subject-date-present';
+import { TSubjectDateAbsentPage } from '../pages/t-subject-date-absent/t-subject-date-absent';
 
 
 
@@ -67,6 +70,8 @@ import { UserTeacherProvider } from '../providers/user-teacher/user-teacher';
     TSubjectWisePerformancePageModule,
     TStudentAttendenceListPageModule,
     TGetSubjectWiseStudentAttendanceListPageModule,
+    TSubjectDatePresentPageModule,
+    TSubjectDateAbsentPageModule,
     
     HttpModule,
     NgCalendarModule,

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController } from 'ionic-angular';
 //import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 
 import { Storage } from '@ionic/storage';
@@ -18,6 +18,7 @@ export class StudentCornerPage {
   student: any;
   todaysAttendance: any;
   doughnutChart: any;
+  loader: any;
   p: number;
   a: number;
 //private androidFullScreen: AndroidFullScreen
@@ -27,14 +28,17 @@ export class StudentCornerPage {
     public navParams: NavParams,
     public storage: Storage,
     public userProvider: UserProvider,
-    public menuCntlr: MenuController,
+    public menuCntlr: MenuController,  
+    private alertctrl: AlertController,  
+    public loadingCtrl: LoadingController,
     ) {
 
 /*       this.androidFullScreen.isImmersiveModeSupported()
       .then(() => this.androidFullScreen.immersiveMode())
       .catch((error: any) => console.log(error));
  */
-    this.loadStudentPrcnt();
+    this.loadStudentPrcnt()
+
 
     this.storage.get('token').then((value) => {
       console.log('Token : ' + JSON.parse(value));
@@ -89,12 +93,20 @@ export class StudentCornerPage {
     });
   }
 
+  presentLoading(){
+    this.loader = this.loadingCtrl.create({
+      content: "Please Wait....",
+      duration: 3000     
+    });
+    this.loader.present();
+  }
 
   performanceList() {
     this.navCtrl.push('SubjectWisePerformancePage')
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad StudentCornerPage');
 
   }

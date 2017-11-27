@@ -1,0 +1,32 @@
+<!--
+  Generated template for the TSubjectDateAbsentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Smart Roll Call</ion-title>
+  </ion-navbar>
+  <div>
+    <div style="text-align:center" ion-item>
+      <p> Absent List for
+        <br> Subject Code: {{student?.SubjectCode}}
+        <br> {{student?.strAttendanceDate}}</p>
+    </div>
+  </div>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row *ngFor="let item of filteredData">
+    <div style="width:20%; float:left; color:rgb(216, 3, 3)">
+      {{item.StudentID}}
+    </div>
+    <div style="width:60%; float:left; color:rgb(216, 3, 3)">{{item.StudentName}} </div>
+    <div style="width:20%; float:left; z-index: 1; text-align:center; color:rgb(216, 3, 3)">
+      {{item.Remarks}}
+    </div>
+  </ion-row>
+</ion-content>

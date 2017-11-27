@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController,MenuController } from 'ionic-angular';
+import { Nav, Platform, AlertController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -23,18 +23,18 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any }>;
-  Tpages: Array<{title: string, component: any }>;
+  pages: Array<{ title: string, component: any }>;
+  Tpages: Array<{ title: string, component: any }>;
 
   user: any;
   notice: any;
   constructor(public platform: Platform,
-     public statusBar: StatusBar, 
-     public splashScreen: SplashScreen,
-     public alertCtrl: AlertController,
-     public storage: Storage,
-     public menuCntlr: MenuController,
-     public userProvider: UserProvider) {
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public alertCtrl: AlertController,
+    public storage: Storage,
+    public menuCntlr: MenuController,
+    public userProvider: UserProvider) {
     this.initializeApp();
 
     this.storage.get('token').then((value) => {
@@ -43,25 +43,25 @@ export class MyApp {
       this.user = JSON.parse(value);
 
     })
-/* 
-      { title: 'Home', component: HomePage, icon:'home' },
-      { title: 'List', component: ListPage, icon:'home'  }, */
+    /* 
+          { title: 'Home', component: HomePage, icon:'home' },
+          { title: 'List', component: ListPage, icon:'home'  }, */
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Calender', component: CalenderPage },
-      { title: 'Get Report', component: GetReportPage}
+      { title: 'Get Report', component: GetReportPage }
     ];
 
     this.Tpages = [
       { title: 'Calender', component: CalenderPage },
-      { title: 'Create Notice', component: CreateNoticePage}
+      { title: 'Create Notice', component: CreateNoticePage }
     ];
 
     this.getNotice();
 
   }
 
-  getNotice(){
+  getNotice() {
     console.log('subject clicked');
     this.storage.get('token').then((value) => {
       console.log('subtoken: ' + JSON.parse(value).AuthToken);
@@ -89,7 +89,15 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  logOut() { 
+  userCorner() {
+    this.nav.push('StudentCornerPage');
+  }
+
+  teacherCorner() {
+    this.nav.push('TClassAggregateListPage');
+  }
+
+  logOut() {
     let alert = this.alertCtrl.create({
       title: 'Confirm Log Out',
       message: 'Are you sure you want to log out?',
@@ -105,12 +113,16 @@ export class MyApp {
           text: 'Log Out',
           handler: () => {
             console.log('Logged out');
+            this.storage.remove('token');
+            this.menuCntlr.swipeEnable(false).close();
+            this.nav.push("LoginPage");
+            /*
             this.storage.get('userStorage').then((data) => {
-                this.storage.clear();
-                this.menuCntlr.swipeEnable(false).close();
-                this.nav.push("LoginPage");
+              this.storage.clear();
+              this.menuCntlr.swipeEnable(false).close();
+              this.nav.push("LoginPage");
             });
-            
+            */
           }
         }
       ]

@@ -51,6 +51,18 @@ export class TSubjectWisePerformancePage {
     });
   }
 
+  absent(event, item){
+    this.navCtrl.push('TSubjectDateAbsentPage',{
+      item:item
+    });
+  }
+
+  present(event, item){
+    this.navCtrl.push('TSubjectDatePresentPage',{
+      item:item
+    });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad TSubjectWisePerformancePage');
   }

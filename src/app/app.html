@@ -20,6 +20,10 @@
   </ion-header>
 
   <ion-content>
+    <ion-list>
+      <button *ngIf="user?.UserRole=='3'" menuClose ion-item (click)="userCorner()">DashBoard</button>
+      <button *ngIf="user?.UserRole=='2'" menuClose ion-item (click)="teacherCorner()">DashBoard</button>
+    </ion-list>
 
     <ion-list *ngIf="user?.UserRole=='3'">
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
